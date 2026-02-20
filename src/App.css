@@ -1,0 +1,134 @@
+/* Global Styles for MRM RCM Solutions */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.App {
+    min-height: 100vh;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Selection */
+::selection {
+    background-color: rgba(0, 120, 212, 0.3);
+    color: inherit;
+}
+
+/* Link Transitions */
+a {
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Button Hover Effects */
+button {
+    transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus Visible for Accessibility */
+*:focus-visible {
+    outline: 2px solid rgba(0, 120, 212, 0.5);
+    outline-offset: 2px;
+}
+
+/* Prevent Horizontal Overflow */
+body {
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #0078D4, #00BFA5);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00BFA5, #7CB342);
+}
+
+/* Image Loading */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Gradient Text Utility */
+.gradient-text {
+    background: linear-gradient(135deg, #0078D4, #00BFA5, #7CB342);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Animation Utilities */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Glass Morphism Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+}
