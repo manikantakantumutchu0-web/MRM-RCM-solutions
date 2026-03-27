@@ -27,18 +27,27 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission (frontend only with mock data)
-    setTimeout(() => {
+    const formDataEncoded = new URLSearchParams({
+      'form-name': 'contact',
+      ...formData,
+    }).toString();
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formDataEncoded,
+      });
+
       toast.success('Thank you for contacting us! We will get back to you within 24 hours.', {
         description: 'Your consultation request has been received.',
         duration: 5000,
       });
-      
-      // Reset form
+
       setFormData({
         name: '',
         practiceName: '',
@@ -46,8 +55,11 @@ const Contact = () => {
         phone: '',
         message: ''
       });
+    } catch (error) {
+      toast.error('Something went wrong. Please try again or email us directly.');
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
@@ -142,8 +154,16 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
+              <form name="contact" data-netlify="true" hidden>
+  <input type="text" name="name" />
+  <input type="text" name="practiceName" />
+  <input type="email" name="email" />
+  <input type="tel" name="phone" />
+  <textarea name="message"></textarea>
+</form>  
+              <form onSubmit={handleSubmit} className="space-y-6">
+               <input type="hidden" name="form-name" value="contact" />   
+               <div className="space-y-2">
                     <Label htmlFor="name">Name *</Label>
                     <Input
                       id="name"
